@@ -1,16 +1,33 @@
+README - WeatherApp
+
 # weather_app_flutter
+==================
 
-Weather app assessment created in Flutter
+A play project that shows the weather forecast. This is the
+repository: https://github.com/Sello23/weather_app_flutter
 
-## Getting Started
+**weather_app_flutter** is a fully functional Flutter app built entirely in Dart.
+It follows Flutter design and development best practices using Clean Architecture.
 
-This project is a starting point for a Flutter application.
+* This project is built using Test-Driven-Development (TDD).
+* Integration with a remote data API requiring authentication (API-key).
+    - The authentication done on the project was only using an API-key. As requested, 3 screens were
+      created, the MainScreen Screen, Search and Favourite Screen for offline saving of locations.
+* Application with one mandatory screen and up to 2 optional screens.
+    - The app has only three screens
+* Some of the aspects of the UI components have to be data-driven. These can be background color,
+  background image, font color, etc.
+    - Background images change according to the weather conditions as specified in the requirements
+      documents
+    - Main screen images (icons) changes on the list as these are taken from the API calls
 
-A few resources to get you started if this is your first Flutter project:
+Project organization
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Branching strategies
+    - We make the changes from a feature branch (feature/noted-improvements) and merge into the
+      master branch (main in this case)
+* File and folder structure follows the Clean architecture
+* Naming conventions and coding, commenting style are done in Dart coding and naming
+  style
+* SonarLint was also used as a Tool that checks all the Clean Architecture standards to
+  ensure everything is done accordingly
