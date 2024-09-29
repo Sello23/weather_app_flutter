@@ -55,7 +55,8 @@ void main() {
                     'deg': 219,
                     'gust': 11.95,
                     'clouds': 2,
-                    'pop': 0
+                    'pop': 0.75,
+                    'rain': 1.73,
                   },
                 ]
               },
@@ -95,7 +96,8 @@ void main() {
                 .having((s) => s.list[0].deg, 'deg', 219)
                 .having((s) => s.list[0].gust, 'gust', 11.95)
                 .having((s) => s.list[0].clouds, 'clouds', 2)
-                .having((s) => s.list[0].pop, 'pop', 0));
+                .having((s) => s.list[0].pop, 'pop', 0.75)
+                .having((s) => s.list[0].rain, 'rain', 1.73));
       });
     });
   });
