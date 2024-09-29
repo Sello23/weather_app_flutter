@@ -17,7 +17,7 @@ class WeatherForecastApiClient {
   final http.Client _httpClient;
 
   /// Finds a [Location] `/direct?q=(query)&appid=(key)&limit=(number)`.
-  Future<List<Location>> searchLocations(String query) async {
+  Future<List<Location>> searchLocations({required String query}) async {
     final locationRequest = Uri.https(
       AppStrings.baseUrl,
       '/geo/1.0/direct',
@@ -38,7 +38,7 @@ class WeatherForecastApiClient {
   }
 
   /// Finds [WeatherData] `/daily?q=(city)&appid=(key)`.
-  Future<WeatherData> updateWeatherWithCity(String cityName) async {
+  Future<WeatherData> updateWeatherWithCity({required String cityName}) async {
     final weatherRequest = Uri.https(
       AppStrings.baseUrl,
       '/daily',
