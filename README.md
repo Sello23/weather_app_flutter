@@ -31,3 +31,4 @@ Project organization
   style
 * SonarLint was also used as a Tool that checks all the Clean Architecture standards to
   ensure everything is done accordingly
+* 
