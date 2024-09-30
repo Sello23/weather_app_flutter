@@ -6,10 +6,13 @@ import 'package:weather_app_flutter/shared/location_exception.dart';
 import '../../domain/repositories/weather_data_repository.dart';
 
 class WeatherDataCubit extends HydratedCubit<WeatherDataState> {
-  WeatherDataCubit(this._weatherDataRepository) : super(const WeatherDataState());
+  WeatherDataCubit(this._weatherDataRepository)
+      : super(const WeatherDataState());
   final WeatherDataRepository _weatherDataRepository;
 
-  Future<void> fetchWeatherWithCity(String cityName) async {
+  Future<void> fetchWeatherWithCity(String? cityName) async {
+    if (cityName == null || cityName.isEmpty) return;
+
     emit(state.copyWith(status: AppStatus.loading));
 
     try {
@@ -31,8 +34,8 @@ class WeatherDataCubit extends HydratedCubit<WeatherDataState> {
     emit(state.copyWith(status: AppStatus.loading));
 
     try {
-      final weatherData = await _weatherDataRepository.updateWeatherWithCoordinates(
-          latitude, longitude);
+      final weatherData = await _weatherDataRepository
+          .updateWeatherWithCoordinates(latitude, longitude);
       emit(state.copyWith(
         status: AppStatus.success,
         weatherData: weatherData,
