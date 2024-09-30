@@ -7,20 +7,20 @@ import 'package:weather_app_flutter/features/weather/data/models/feels_like.dart
 import 'package:weather_app_flutter/features/weather/data/models/temp.dart';
 import 'package:weather_app_flutter/features/weather/data/models/weather_data.dart';
 import 'package:weather_app_flutter/features/weather/data/models/weather_forecast.dart';
-import 'package:weather_app_flutter/features/weather/domain/repositories/weather_repository.dart';
+import 'package:weather_app_flutter/features/weather/domain/repositories/weather_data_repository.dart';
 import 'package:weather_app_flutter/shared/weather_forecast_api_client.dart';
 
 class MockWeatherForecastApiClient extends Mock
     implements WeatherForecastApiClient {}
 
 void main() {
-  late WeatherRepository weatherRepository;
+  late WeatherDataRepository weatherDataRepository;
   late MockWeatherForecastApiClient mockApiClient;
 
   setUp(() {
     mockApiClient = MockWeatherForecastApiClient();
-    weatherRepository =
-        WeatherRepository(weatherForecastApiClient: mockApiClient);
+    weatherDataRepository =
+        WeatherDataRepository(weatherForecastApiClient: mockApiClient);
   });
 
   group('updateWeatherWithCity', () {
@@ -293,7 +293,7 @@ void main() {
           .thenAnswer((_) async => weatherData);
 
       final result =
-          await weatherRepository.updateWeatherWithCity('Johannesburg');
+          await weatherDataRepository.updateWeatherWithCity('Johannesburg');
 
       expect(result, weatherData);
       verify(() =>
@@ -305,7 +305,7 @@ void main() {
       when(() => mockApiClient.updateWeatherWithCity(cityName: 'Johannesburg'))
           .thenThrow(Exception('API error'));
 
-      expect(() => weatherRepository.updateWeatherWithCity('Johannesburg'),
+      expect(() => weatherDataRepository.updateWeatherWithCity('Johannesburg'),
           throwsException);
     });
   });
@@ -580,7 +580,7 @@ void main() {
           latitude: -26.2023,
           longitude: 28.0436)).thenAnswer((_) async => weatherData);
 
-      final result = await weatherRepository.updateWeatherWithCoordinates(
+      final result = await weatherDataRepository.updateWeatherWithCoordinates(
           -26.2023, 28.0436);
 
       expect(result, weatherData);
@@ -595,7 +595,7 @@ void main() {
 
       expect(
           () =>
-              weatherRepository.updateWeatherWithCoordinates(-26.2023, 28.0436),
+              weatherDataRepository.updateWeatherWithCoordinates(-26.2023, 28.0436),
           throwsException);
     });
   });

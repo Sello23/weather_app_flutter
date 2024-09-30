@@ -4,11 +4,7 @@ import '../features/seacrh/data/model/Location.dart';
 import '../features/weather/data/models/Weather.dart';
 import '../features/weather/data/models/weather_data.dart';
 import 'app_strings.dart';
-
-//Location
-class LocationRequestFailure implements Exception {}
-
-class LocationNotFoundFailure implements Exception {}
+import 'location_exception.dart';
 
 class WeatherForecastApiClient {
   WeatherForecastApiClient({http.Client? httpClient})

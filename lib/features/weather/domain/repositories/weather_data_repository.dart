@@ -1,8 +1,8 @@
 import '../../../../shared/weather_forecast_api_client.dart';
 import '../../data/models/weather_data.dart';
 
-class WeatherRepository {
-  WeatherRepository({WeatherForecastApiClient? weatherForecastApiClient})
+class WeatherDataRepository {
+  WeatherDataRepository({WeatherForecastApiClient? weatherForecastApiClient})
       : _weatherForecastApiClient =
             weatherForecastApiClient ?? WeatherForecastApiClient();
 
