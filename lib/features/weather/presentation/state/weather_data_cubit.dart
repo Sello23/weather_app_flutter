@@ -1,8 +1,8 @@
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:weather_app_flutter/features/weather/presentation/state/weather_data_state.dart';
-import 'package:weather_app_flutter/shared/app_state.dart';
 import 'package:weather_app_flutter/shared/location_exception.dart';
 
+import '../../../../shared/states/app_status.dart';
 import '../../domain/repositories/weather_data_repository.dart';
 
 class WeatherDataCubit extends HydratedCubit<WeatherDataState> {
