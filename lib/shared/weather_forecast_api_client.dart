@@ -4,11 +4,7 @@ import '../features/seacrh/data/model/Location.dart';
 import '../features/weather/data/models/Weather.dart';
 import '../features/weather/data/models/weather_data.dart';
 import 'app_strings.dart';
-
-//Location
-class LocationRequestFailure implements Exception {}
-
-class LocationNotFoundFailure implements Exception {}
+import 'location_exception.dart';
 
 class WeatherForecastApiClient {
   WeatherForecastApiClient({http.Client? httpClient})
@@ -54,7 +50,7 @@ class WeatherForecastApiClient {
     final weatherDataJson =
         jsonDecode(weatherDataResponse.body) as Map<String, dynamic>;
     if (weatherDataJson.isEmpty) throw LocationNotFoundFailure();
-    return WeatherData.fromJson(json as Map<String, dynamic>);
+    return WeatherData.fromJson(weatherDataJson);
   }
 
   /// Fetches [Weather] for a given [latitude] and [longitude].
@@ -83,6 +79,6 @@ class WeatherForecastApiClient {
     final weatherDataJson =
     jsonDecode(weatherDataResponse.body) as Map<String, dynamic>;
     if (weatherDataJson.isEmpty) throw LocationNotFoundFailure();
-    return WeatherData.fromJson(json as Map<String, dynamic>);
+    return WeatherData.fromJson(weatherDataJson);
   }
 }

@@ -17,7 +17,8 @@ class WeatherForecast extends Equatable{
   final int deg;
   final double gust;
   final int clouds;
-  final int pop;
+  final double pop;
+  final double? rain;
 
   const WeatherForecast({
     required this.dt,
@@ -33,6 +34,7 @@ class WeatherForecast extends Equatable{
     required this.gust,
     required this.clouds,
     required this.pop,
+    required this.rain
   });
 
   factory WeatherForecast.fromJson(Map<String, dynamic> json) {
@@ -51,7 +53,8 @@ class WeatherForecast extends Equatable{
       deg: json['deg'] as int,
       gust: json['gust'] as double,
       clouds: json['clouds'] as int,
-      pop: json['pop'] as int,
+      pop: json['pop'] as double,
+      rain: json['rain'] as double
     );
   }
 
@@ -70,6 +73,7 @@ class WeatherForecast extends Equatable{
       'gust': gust,
       'clouds': clouds,
       'pop': pop,
+      'rain': rain
     };
   }
 
@@ -87,7 +91,8 @@ class WeatherForecast extends Equatable{
     deg,
     gust,
     clouds,
-    pop
+    pop,
+    rain
   ];
 
 }

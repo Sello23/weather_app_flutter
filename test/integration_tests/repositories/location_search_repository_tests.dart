@@ -53,7 +53,7 @@ void main() {
     ];
 
     test('returns a list of Locations on successful API call', () async {
-      when(() => mockApiClient.searchLocations(query: any())).thenAnswer(
+      when(() => mockApiClient.searchLocations(query: query)).thenAnswer(
         (_) async => locationList,
       );
 
@@ -64,7 +64,7 @@ void main() {
     });
 
     test('throws an exception when API call fails', () async {
-      when(() => mockApiClient.searchLocations(query: any()))
+      when(() => mockApiClient.searchLocations(query: query))
           .thenThrow(Exception('API error'));
 
       expect(() => locationSearchRepository.searchLocations(query),

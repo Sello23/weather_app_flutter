@@ -7,7 +7,7 @@ void main() {
       test('returns correct Location object', () {
         expect(
           Location.fromJson(
-            <String, dynamic>{
+            const <String, dynamic>{
               'name': 'Chicago',
               'lat': 41.85003,
               'lon': -87.65005,
