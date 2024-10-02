@@ -24,7 +24,7 @@ final class WeatherDataState extends Equatable {
   Map<String, dynamic> toJson() {
     return {
       'status': status.toString().split('.').last,
-      'weatherData': weatherData,
+      'weatherData': weatherData?.toJson(),
     };
   }
 

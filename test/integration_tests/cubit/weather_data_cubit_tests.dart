@@ -19,7 +19,12 @@ import 'package:weather_app_flutter/shared/location_exception.dart';
 
 import '../../helpers/hydrated_bloc.dart';
 
-var weatherData = const WeatherData(
+class MockWeatherRepository extends Mock
+    implements weather_data_repository.WeatherDataRepository {}
+
+class MockWeatherData extends Mock implements WeatherData {}
+
+var initialisedWeatherData = const WeatherData(
   city: City(
     id: 993800,
     name: "Johannesburg",
@@ -283,38 +288,51 @@ var weatherData = const WeatherData(
   ],
 );
 
-class MockWeatherRepository extends Mock
-    implements weather_data_repository.WeatherDataRepository {}
-
-class MockWeatherData extends Mock implements WeatherData {}
-
 void main() {
   initialiseHydratedStorage();
 
   group('WeatherDataCubit', () {
-    late WeatherData weatherData;
-    late weather_data_repository.WeatherDataRepository weatherDataRepository;
+    late WeatherData mockedWeatherData;
+    late weather_data_repository.WeatherDataRepository
+        mockedWeatherDataRepository;
     late WeatherDataCubit weatherDataCubit;
 
     setUp(() async {
-      weatherData = MockWeatherData();
-      weatherDataRepository = MockWeatherRepository();
+      mockedWeatherData = MockWeatherData();
+      mockedWeatherDataRepository = MockWeatherRepository();
 
-      when(() => weatherData).thenReturn(weatherData);
+      when(() => mockedWeatherData.city)
+          .thenReturn(initialisedWeatherData.city);
+      when(() => mockedWeatherData.cod).thenReturn(initialisedWeatherData.cod);
+      when(() => mockedWeatherData.message)
+          .thenReturn(initialisedWeatherData.message);
+      when(() => mockedWeatherData.cnt).thenReturn(initialisedWeatherData.cnt);
+      when(() => mockedWeatherData.list)
+          .thenReturn(initialisedWeatherData.list);
+
+      when(() => mockedWeatherData.toJson())
+          .thenReturn(initialisedWeatherData.toJson());
+
       when(
-        () => weatherDataRepository.updateWeatherWithCity(any()),
-      ).thenAnswer((_) async => weatherData);
-      weatherDataCubit = WeatherDataCubit(weatherDataRepository);
+        () => mockedWeatherDataRepository.updateWeatherWithCity(any()),
+      ).thenAnswer((_) async => mockedWeatherData);
+
+      when(
+        () => mockedWeatherDataRepository.updateWeatherWithCoordinates(
+            any(), any()),
+      ).thenAnswer((_) async => mockedWeatherData);
+
+      weatherDataCubit = WeatherDataCubit(mockedWeatherDataRepository);
     });
 
     test('initial state is correct', () {
-      final weatherCubit = WeatherDataCubit(weatherDataRepository);
+      final weatherCubit = WeatherDataCubit(mockedWeatherDataRepository);
       expect(weatherCubit.state, const WeatherDataState());
     });
 
     group('toJson/fromJson', () {
       test('work properly', () {
-        final weatherDataCubit = WeatherDataCubit(weatherDataRepository);
+        final weatherDataCubit = WeatherDataCubit(mockedWeatherDataRepository);
         expect(
           weatherDataCubit
               .fromJson(weatherDataCubit.toJson(weatherDataCubit.state)),
@@ -341,10 +359,11 @@ void main() {
       blocTest<WeatherDataCubit, WeatherDataState>(
         'calls updateWeatherWithCity with correct city',
         build: () => weatherDataCubit,
-        act: (cubit) => cubit.fetchWeatherWithCity(weatherData.city.name),
+        act: (cubit) =>
+            cubit.fetchWeatherWithCity(initialisedWeatherData.city.name),
         verify: (_) {
-          verify(() => weatherDataRepository
-              .updateWeatherWithCity(weatherData.city.name)).called(1);
+          verify(() => mockedWeatherDataRepository.updateWeatherWithCity(
+              initialisedWeatherData.city.name)).called(1);
         },
       );
 
@@ -352,11 +371,12 @@ void main() {
         'emits [loading, failure] when updateWeatherWithCity throws',
         setUp: () {
           when(
-            () => weatherDataRepository.updateWeatherWithCity(any()),
+            () => mockedWeatherDataRepository.updateWeatherWithCity(any()),
           ).thenThrow(LocationException());
         },
         build: () => weatherDataCubit,
-        act: (cubit) => cubit.fetchWeatherWithCity(weatherData.city.name),
+        act: (cubit) =>
+            cubit.fetchWeatherWithCity(initialisedWeatherData.city.name),
         expect: () => <WeatherDataState>[
           const WeatherDataState(status: AppStatus.loading),
           const WeatherDataState(status: AppStatus.failure),
@@ -367,35 +387,115 @@ void main() {
         'emits [loading, offline] when updateWeatherWithCity throws',
         setUp: () {
           when(
-            () => weatherDataRepository.updateWeatherWithCity(any()),
+            () => mockedWeatherDataRepository.updateWeatherWithCity(any()),
           ).thenThrow(const SocketException('Internet is offline'));
         },
         build: () => weatherDataCubit,
-        act: (cubit) => cubit.fetchWeatherWithCity(weatherData.city.name),
+        act: (cubit) =>
+            cubit.fetchWeatherWithCity(initialisedWeatherData.city.name),
         expect: () => <WeatherDataState>[
           const WeatherDataState(status: AppStatus.loading),
           const WeatherDataState(status: AppStatus.offline),
         ],
       );
 
-      //TODO: Fix test
       blocTest<WeatherDataCubit, WeatherDataState>(
-        'emits [loading, success] when fetchWeatherWithCity returns',
+        'emits [success, weatherData] when fetchWeatherWithCity returns',
         build: () => weatherDataCubit,
-        act: (cubit) => cubit.fetchWeatherWithCity(weatherData.city.name),
+        act: (cubit) =>
+            cubit.fetchWeatherWithCity(initialisedWeatherData.city.name),
         expect: () => <dynamic>[
           const WeatherDataState(status: AppStatus.loading),
           isA<WeatherDataState>()
               .having((w) => w.status, 'status', AppStatus.success)
               .having(
                   (w) => w.weatherData,
-                  'weatherData',
+                  'mockedWeatherData',
                   isA<WeatherData>()
-                      .having((w) => w.city, 'city', isNotNull)
-                      .having((w) => w.cod, 'cod', isNotNull)
-                      .having((w) => w.message, 'message', isNotNull)
-                      .having((w) => w.cnt, 'cnt', isNotNull)
-                      .having((w) => w.list, 'list', isNotNull))
+                      .having(
+                          (w) => w.city, 'city', initialisedWeatherData.city)
+                      .having((w) => w.cod, 'cod', initialisedWeatherData.cod)
+                      .having((w) => w.message, 'message',
+                          initialisedWeatherData.message)
+                      .having((w) => w.cnt, 'cnt', initialisedWeatherData.cnt)
+                      .having(
+                          (w) => w.list, 'list', initialisedWeatherData.list))
+        ],
+      );
+    });
+
+    group('fetchWeatherWithCoordinates', () {
+      blocTest<WeatherDataCubit, WeatherDataState>(
+        'calls fetchWeatherWithCoordinates with correct coordinates',
+        build: () => weatherDataCubit,
+        act: (cubit) => cubit.fetchWeatherWithCoordinates(
+            initialisedWeatherData.city.coord.lat,
+            initialisedWeatherData.city.coord.lon),
+        verify: (_) {
+          verify(() => mockedWeatherDataRepository.updateWeatherWithCoordinates(
+              initialisedWeatherData.city.coord.lat,
+              initialisedWeatherData.city.coord.lon)).called(1);
+        },
+      );
+
+      blocTest<WeatherDataCubit, WeatherDataState>(
+        'emits [loading, failure] when updateWeatherWithCoordinates throws',
+        setUp: () {
+          when(
+            () => mockedWeatherDataRepository.updateWeatherWithCoordinates(
+                any(), any()),
+          ).thenThrow(LocationException());
+        },
+        build: () => weatherDataCubit,
+        act: (cubit) => cubit.fetchWeatherWithCoordinates(
+            initialisedWeatherData.city.coord.lat,
+            initialisedWeatherData.city.coord.lon),
+        expect: () => <WeatherDataState>[
+          const WeatherDataState(status: AppStatus.loading),
+          const WeatherDataState(status: AppStatus.failure),
+        ],
+      );
+
+      blocTest<WeatherDataCubit, WeatherDataState>(
+        'emits [loading, offline] when updateWeatherWithCoordinates throws',
+        setUp: () {
+          when(
+            () => mockedWeatherDataRepository.updateWeatherWithCoordinates(
+                any(), any()),
+          ).thenThrow(const SocketException('Internet is offline'));
+        },
+        build: () => weatherDataCubit,
+        act: (cubit) => cubit.fetchWeatherWithCoordinates(
+            initialisedWeatherData.city.coord.lat,
+            initialisedWeatherData.city.coord.lon),
+        expect: () => <WeatherDataState>[
+          const WeatherDataState(status: AppStatus.loading),
+          const WeatherDataState(status: AppStatus.offline),
+        ],
+      );
+
+      blocTest<WeatherDataCubit, WeatherDataState>(
+        'emits [success, weatherData] when fetchWeatherWithCoordinates returns',
+        build: () => weatherDataCubit,
+        act: (cubit) => cubit.fetchWeatherWithCoordinates(
+            initialisedWeatherData.city.coord.lat,
+            initialisedWeatherData.city.coord.lon),
+        expect: () => <dynamic>[
+          const WeatherDataState(status: AppStatus.loading),
+          isA<WeatherDataState>()
+              .having((w) => w.status, 'status', AppStatus.success)
+              .having(
+                  (w) => w.weatherData,
+                  'mockedWeatherData',
+                  isA<WeatherData>()
+                      .having(
+                          (w) => w.city, 'city', initialisedWeatherData.city)
+                      .having((w) => w.cod, 'cod', initialisedWeatherData.cod)
+                      .having((w) => w.message, 'message',
+                          initialisedWeatherData.message)
+                      .having((w) => w.cnt, 'cnt', initialisedWeatherData.cnt)
+                      .having(
+                          (w) => w.list, 'list', initialisedWeatherData.list))
         ],
       );
     });
