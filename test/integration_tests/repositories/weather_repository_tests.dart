@@ -310,7 +310,7 @@ void main() {
     });
   });
 
-  group('updateWeatherWithCity', () {
+  group('updateWeatherWithCoordinates', () {
     const weatherData = WeatherData(
       city: City(
         id: 993800,
