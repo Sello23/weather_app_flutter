@@ -14,8 +14,8 @@ import 'package:weather_app_flutter/features/weather/domain/repositories/weather
     as weather_data_repository;
 import 'package:weather_app_flutter/features/weather/presentation/state/weather_data_cubit.dart';
 import 'package:weather_app_flutter/features/weather/presentation/state/weather_data_state.dart';
-import 'package:weather_app_flutter/shared/states/app_state.dart';
 import 'package:weather_app_flutter/shared/location_exception.dart';
+import 'package:weather_app_flutter/shared/states/app_status.dart';
 
 import '../../helpers/hydrated_bloc.dart';
 
