@@ -17,7 +17,7 @@ class _LocationScreenState extends State<LocationScreen> {
 
   @override
   void initState() {
-    _getCurrentPosition;
+    _getCurrentPosition();
     super.initState();
   }
 
@@ -53,7 +53,7 @@ class _LocationScreenState extends State<LocationScreen> {
 
   void showSnackBar(String message) {
     ScaffoldMessenger.of(context)
-        .showSnackBar(const SnackBar(content: Text(message)));
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 
   Future<void> getPosition() async {
