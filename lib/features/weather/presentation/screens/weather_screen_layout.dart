@@ -12,13 +12,14 @@ class WeatherScreenLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("Weather App"),
-      ),
-      body: Center(
-        child:
-            Column(),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/sunny_background.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: null /* add child content here */,
       ),
     );
   }
