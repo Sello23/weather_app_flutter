@@ -15,7 +15,7 @@ class WeatherForecast extends Equatable{
   final List<Weather> weather;
   final double speed;
   final int deg;
-  final double gust;
+  final num gust;
   final int clouds;
   final int pop;
   final double? rain;
@@ -51,7 +51,7 @@ class WeatherForecast extends Equatable{
           .toList(),
       speed: json['speed'] as double,
       deg: json['deg'] as int,
-      gust: json['gust'] as double,
+      gust: json['gust'] as num,
       clouds: json['clouds'] as int,
       pop: json['pop'] as int,
       rain: json['rain'] as double?
@@ -70,7 +70,7 @@ class WeatherForecast extends Equatable{
       'weather': weather.map((e) => e.toJson()).toList(),
       'speed': speed,
       'deg': deg,
-      'gust': gust,
+      'gust': gust.toDouble(),
       'clouds': clouds,
       'pop': pop,
       'rain': rain
