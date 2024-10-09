@@ -30,7 +30,7 @@ class _LocationScreenState extends State<LocationScreen> {
 
   Future<void> _getCurrentPosition() async {
     try {
-      CircularProgressIndicator;
+      const CircularProgressIndicator();
 
       final locationPermissionStatus =
           await LocationHandler.handleLocationPermission();
@@ -53,8 +53,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 final coordinates =
                     Coord(lon: position.longitude, lat: position.latitude);
                 final coordinatesJson = jsonEncode(coordinates.toJson());
-                if (mounted)
-                  GoRouter.of(context).go('/location/coord=$coordinatesJson');
+                if (mounted) GoRouter.of(context).go('/location/?coord=$coordinatesJson');
               });
             }
         }

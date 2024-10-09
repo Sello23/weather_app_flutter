@@ -20,16 +20,16 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: '/location/',
+      path: '/location',
       pageBuilder: (context, state) {
-        final coordJson = state.uri.queryParameters['coord']!;
-        final coord = Coord.fromJson(jsonDecode(coordJson));
+        final coordinatesJson = state.uri.queryParameters['coord']!;
+        final coordinates = Coord.fromJson(jsonDecode(coordinatesJson));
 
         return MaterialPage<void>(
           key: state.pageKey,
           child: BlocProvider(
               create: (context) => WeatherDataCubit(WeatherDataRepository())
-                ..fetchWeatherWithCoordinates(coord.lat, coord.lon),
+                ..fetchWeatherWithCoordinates(coordinates.lat, coordinates.lon),
               child: const WeatherScreen()),
         );
       },

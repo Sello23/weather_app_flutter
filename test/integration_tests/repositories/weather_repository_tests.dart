@@ -107,7 +107,7 @@ void main() {
           deg: 325,
           gust: 12.95,
           clouds: 28,
-          pop: 0.75,
+          pop: 0,
           rain: 1.73,
         ),
         WeatherForecast(
@@ -142,7 +142,7 @@ void main() {
           deg: 315,
           gust: 16.69,
           clouds: 2,
-          pop: 0.68,
+          pop: 0,
           rain: 0.35,
         ),
         WeatherForecast(
@@ -394,7 +394,7 @@ void main() {
           deg: 325,
           gust: 12.95,
           clouds: 28,
-          pop: 0.75,
+          pop: 0,
           rain: 1.73,
         ),
         WeatherForecast(
@@ -429,7 +429,7 @@ void main() {
           deg: 315,
           gust: 16.69,
           clouds: 2,
-          pop: 0.68,
+          pop: 0,
           rain: 0.35,
         ),
         WeatherForecast(
@@ -594,8 +594,8 @@ void main() {
           longitude: 28.0436)).thenThrow(Exception('API error'));
 
       expect(
-          () =>
-              weatherDataRepository.updateWeatherWithCoordinates(-26.2023, 28.0436),
+          () => weatherDataRepository.updateWeatherWithCoordinates(
+              -26.2023, 28.0436),
           throwsException);
     });
   });

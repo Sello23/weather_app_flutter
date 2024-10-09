@@ -107,7 +107,7 @@ var initialisedWeatherData = const WeatherData(
       deg: 325,
       gust: 12.95,
       clouds: 28,
-      pop: 0.75,
+      pop: 0,
       rain: 1.73,
     ),
     WeatherForecast(
@@ -142,7 +142,7 @@ var initialisedWeatherData = const WeatherData(
       deg: 315,
       gust: 16.69,
       clouds: 2,
-      pop: 0.68,
+      pop: 0,
       rain: 0.35,
     ),
     WeatherForecast(

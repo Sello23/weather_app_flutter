@@ -61,10 +61,10 @@ class WeatherForecastApiClient {
 
     final weatherRequest = Uri.https(
       AppStrings.baseUrl,
-      '/daily',
+      '/data/2.5/forecast/daily',
       {
-        'lat': latitude,
-        'lon': longitude,
+        'lat': latitude.toString(),
+        'lon': longitude.toString(),
         'appid': AppStrings.apiKey,
         'units': AppStrings.metric
       },
