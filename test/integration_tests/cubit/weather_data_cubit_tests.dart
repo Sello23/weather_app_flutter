@@ -14,8 +14,8 @@ import 'package:weather_app_flutter/features/weather/domain/repositories/weather
     as weather_data_repository;
 import 'package:weather_app_flutter/features/weather/presentation/state/weather_data_cubit.dart';
 import 'package:weather_app_flutter/features/weather/presentation/state/weather_data_state.dart';
-import 'package:weather_app_flutter/shared/app_state.dart';
 import 'package:weather_app_flutter/shared/location_exception.dart';
+import 'package:weather_app_flutter/shared/states/app_status.dart';
 
 import '../../helpers/hydrated_bloc.dart';
 
@@ -107,7 +107,7 @@ var initialisedWeatherData = const WeatherData(
       deg: 325,
       gust: 12.95,
       clouds: 28,
-      pop: 0.75,
+      pop: 0,
       rain: 1.73,
     ),
     WeatherForecast(
@@ -142,7 +142,7 @@ var initialisedWeatherData = const WeatherData(
       deg: 315,
       gust: 16.69,
       clouds: 2,
-      pop: 0.68,
+      pop: 0,
       rain: 0.35,
     ),
     WeatherForecast(

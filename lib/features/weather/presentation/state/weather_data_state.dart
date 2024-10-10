@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:weather_app_flutter/features/weather/data/models/weather_data.dart';
-import 'package:weather_app_flutter/shared/app_state.dart';
+
+import '../../../../shared/states/app_status.dart';
 
 final class WeatherDataState extends Equatable {
   const WeatherDataState({

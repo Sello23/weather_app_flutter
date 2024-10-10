@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 
 class Temp extends Equatable {
-  final double day;
-  final double min;
-  final double max;
-  final double night;
-  final double eve;
-  final double morn;
+  final num day;
+  final num min;
+  final num max;
+  final num night;
+  final num eve;
+  final num morn;
 
   const Temp({
     required this.day,
@@ -19,12 +19,12 @@ class Temp extends Equatable {
 
   factory Temp.fromJson(Map<String, dynamic> json) {
     return Temp(
-      day: json['day'] as double,
-      min: json['min'] as double,
-      max: json['max'] as double,
-      night: json['night'] as double,
-      eve: json['eve'] as double,
-      morn: json['morn'] as double,
+      day: json['day'] as num,
+      min: json['min'] as num,
+      max: json['max'] as num,
+      night: json['night'] as num,
+      eve: json['eve'] as num,
+      morn: json['morn'] as num,
     );
   }
 
