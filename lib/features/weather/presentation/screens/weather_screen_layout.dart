@@ -35,7 +35,7 @@ class WeatherScreenLayout extends StatelessWidget {
                     child: const Column(
                       children: [
                         Text(
-                          "25*",
+                          "20°",
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -61,17 +61,26 @@ class WeatherScreenLayout extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "19*\nmin",
-                        style: TextStyle(fontSize: 17, color: Colors.white),
+                      SizedBox(
+                        width: 90,
+                        child: Text(
+                          "20°\nmin",
+                          style: TextStyle(fontSize: 17, color: Colors.white, ),
+                        ),
                       ),
-                      Text(
-                        "25*\ncurrent",
-                        style: TextStyle(fontSize: 17, color: Colors.white),
+                      SizedBox(
+                        width: 60,
+                        child: Text(
+                          "20°\ncurrent",
+                          style: TextStyle(fontSize: 17, color: Colors.white),
+                        ),
                       ),
-                      Text(
-                        "27*\nmax",
-                        style: TextStyle(fontSize: 17, color: Colors.white),
+                      SizedBox(
+                        width: 37,
+                        child: Text(
+                          "20°\nmax",
+                          style: TextStyle(fontSize: 17, color: Colors.white),
+                        ),
                       )
                     ],
                   ),
@@ -87,96 +96,126 @@ class WeatherScreenLayout extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "Tuesday",
-                            style: TextStyle(fontSize: 17, color: Colors.white),
+                          SizedBox(
+                            width: 90,
+                            child: Text(
+                              "Tuesday",
+                              style:
+                                  TextStyle(fontSize: 17, color: Colors.white),
+                            ),
                           ),
-                          SizedBox(),
                           Icon(
                             Icons.ac_unit_rounded,
                             color: Colors.white,
                           ),
-                          SizedBox(),
-                          Text(
-                            "20*",
-                            style: TextStyle(fontSize: 17, color: Colors.white),
-                          ),
+                          SizedBox(
+                            width: 30,
+                            child: Text(
+                              "20°",
+                              style:
+                                  TextStyle(fontSize: 17, color: Colors.white),
+                            ),
+                          )
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "Wednesday",
-                            style: TextStyle(fontSize: 17, color: Colors.white),
+                          SizedBox(
+                            width: 90,
+                            child: Text(
+                              "Wednesday",
+                              style:
+                                  TextStyle(fontSize: 17, color: Colors.white),
+                            ),
                           ),
-                          SizedBox(),
                           Icon(
                             Icons.ac_unit_rounded,
                             color: Colors.white,
                           ),
-                          SizedBox(),
-                          Text(
-                            "20*",
-                            style: TextStyle(fontSize: 17, color: Colors.white),
-                          ),
+                          SizedBox(
+                            width: 30,
+                            child: Text(
+                              "20°",
+                              style:
+                                  TextStyle(fontSize: 17, color: Colors.white),
+                            ),
+                          )
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "Thursday",
-                            style: TextStyle(fontSize: 17, color: Colors.white),
+                          SizedBox(
+                            width: 90,
+                            child: Text(
+                              "Thursday",
+                              style:
+                                  TextStyle(fontSize: 17, color: Colors.white),
+                            ),
                           ),
-                          SizedBox(),
                           Icon(
                             Icons.ac_unit_rounded,
                             color: Colors.white,
                           ),
-                          SizedBox(),
-                          Text(
-                            "20*",
-                            style: TextStyle(fontSize: 17, color: Colors.white),
-                          ),
+                          SizedBox(
+                            width: 30,
+                            child: Text(
+                              "20°",
+                              style:
+                                  TextStyle(fontSize: 17, color: Colors.white),
+                            ),
+                          )
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "Friday",
-                            style: TextStyle(fontSize: 17, color: Colors.white),
+                          SizedBox(
+                            width: 90,
+                            child: Text(
+                              "Friday",
+                              style:
+                                  TextStyle(fontSize: 17, color: Colors.white),
+                            ),
                           ),
-                          SizedBox(),
                           Icon(
                             Icons.ac_unit_rounded,
                             color: Colors.white,
                           ),
-                          SizedBox(),
-                          Text(
-                            "20*",
-                            style: TextStyle(fontSize: 17, color: Colors.white),
-                          ),
+                          SizedBox(
+                            width: 30,
+                            child: Text(
+                              "20°",
+                              style:
+                                  TextStyle(fontSize: 17, color: Colors.white),
+                            ),
+                          )
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "Saturday",
-                            style: TextStyle(fontSize: 17, color: Colors.white),
+                          SizedBox(
+                            width: 90,
+                            child: Text(
+                              "Saturday",
+                              style:
+                                  TextStyle(fontSize: 17, color: Colors.white),
+                            ),
                           ),
-                          SizedBox(),
                           Icon(
                             Icons.ac_unit_rounded,
                             color: Colors.white,
                           ),
-                          SizedBox(),
-                          Text(
-                            "20*",
-                            style: TextStyle(fontSize: 17, color: Colors.white),
-                          ),
+                          SizedBox(
+                            width: 30,
+                            child: Text(
+                              "20°",
+                              style:
+                                  TextStyle(fontSize: 17, color: Colors.white),
+                            ),
+                          )
                         ],
                       ),
                     ],
