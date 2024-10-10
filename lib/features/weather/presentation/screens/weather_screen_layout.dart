@@ -57,7 +57,7 @@ class WeatherScreenLayout extends StatelessWidget {
             const Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(17.0),
+                  padding: EdgeInsets.all(17.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
